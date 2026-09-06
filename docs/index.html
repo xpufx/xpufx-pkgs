@@ -7,24 +7,68 @@
 <style>
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
 h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+h2 { margin-top: 2rem; }
 code, pre { background: #f4f4f4; border-radius: 4px; }
 code { padding: 0.15em 0.4em; font-size: 0.9em; }
-pre { padding: 1rem; overflow-x: auto; }
+pre { padding: 1rem; overflow-x: auto; font-size: 0.85em; }
 a { color: #0366d6; }
+.warn { background: #fff8c5; border: 1px solid #d4a72c; border-radius: 6px; padding: 0.75rem 1rem; margin: 1rem 0; }
 </style>
 </head>
 <body>
 <h1>xpufx Package Repository</h1>
 <p>Public mirror for pre-built binaries from self-hosted Forgejo builders.</p>
-<p>Provides Arch <code>pacman</code> and Debian <code>apt</code> repos plus standalone releases.</p>
+<p>Provides isolated packages for <code>paseo</code> / <code>tone3000</code> — installed to <code>/opt</code> / <code>/usr/lib/&lt;pkg&gt;</code>, never shadowing system libs.</p>
+<div class="warn"><strong>Safe by default:</strong> repo only contains <code>paseo-*</code> / <code>tone3000-*</code>. Unique names, low priority pin, and isolated paths prevent pulling system packages.</div>
+
 <h2>Arch (CachyOS / Arch)</h2>
+<p>Add <strong>last</strong> in <code>/etc/pacman.conf</code> (after <code>[core]</code> / <code>[extra]</code> so core wins):</p>
 <pre><code>[xpufx]
 Server = https://xpufx.github.io/xpufx-pkgs/arch/$arch
 SigLevel = Optional TrustAll
 </code></pre>
-<p>Then <code>sudo pacman -Sy</code> and <code>pacman -S paseo-cli-git paseo-desktop-git tone3000-plugin tone3000-plugin-bin</code></p>
-<h2>Debian / Ubuntu (future)</h2>
-<pre><code>apt deb https://xpufx.github.io/xpufx-pkgs/apt stable main</code></pre>
+<p>Then:</p>
+<pre><code>sudo pacman -Sy
+pacman -S xpufx/paseo-cli-git   # explicit repo prefix avoids shadowing
+pacman -S xpufx/paseo-desktop-git xpufx/tone3000-plugin-bin</code></pre>
+<p>Only <code>paseo-*</code> / <code>tone3000-*</code> exist in <code>[xpufx]</code> — <code>pacman -S bash</code> still comes from <code>core</code>.</p>
+
+<h2>Debian / Ubuntu</h2>
+<p>Repo has <code>Origin: xpufx</code>, low pin so Debian main wins unless explicit:</p>
+<pre><code>echo "deb [trusted=yes] https://xpufx.github.io/xpufx-pkgs/apt stable main" | sudo tee /etc/apt/sources.list.d/xpufx.list
+cat <<'PIN' | sudo tee /etc/apt/preferences.d/99-xpufx
+Package: *
+Pin: origin xpufx.github.io
+Pin-Priority: 100
+PIN
+sudo apt update
+sudo apt install paseo-cli-git  # or: apt -t xpufx install &lt;pkg&gt;
+</code></pre>
+
+<h2>Fedora / RHEL (RPM)</h2>
+<pre><code>sudo tee /etc/yum.repos.d/xpufx.repo &lt;&lt;'REPO'
+[xpufx]
+name=xpufx
+baseurl=https://xpufx.github.io/xpufx-pkgs/rpm/$basearch
+enabled=1
+gpgcheck=0
+priority=99
+includepkgs=paseo* tone3000*
+REPO
+sudo dnf makecache
+sudo dnf install paseo-cli-git
+</code></pre>
+<p><code>priority=99</code> + <code>includepkgs</code> ensures only <code>paseo*</code> / <code>tone3000*</code> are visible from <code>[xpufx]</code>.</p>
+
+<h2>Alpine (APK)</h2>
+<pre><code>echo "https://xpufx.github.io/xpufx-pkgs/apk/x86_64" | sudo tee -a /etc/apk/repositories
+sudo apk update
+sudo apk add paseo-cli-git
+</code></pre>
+<p>Repo only contains our packages — system <code>apk</code> still resolves from main.</p>
+
+<h2>Standalone</h2>
+<p>Tarball releases under <a href="releases/">releases/</a>.</p>
 <p>Source: <a href="https://github.com/xpufx/xpufx-pkgs">github.com/xpufx/xpufx-pkgs</a> — built by self-hosted Forgejo builder</p>
 </body>
 </html>
