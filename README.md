@@ -11,4 +11,4 @@ Hosts Arch (`pacman`), Debian (`apt`), and standalone releases. Built by self-ho
 
 See https://xpufx.github.io/xpufx-pkgs/ for setup instructions.
 
-Source builders are self-hosted Forgejo; this repo is the public binary mirror (like `podman-isolated` → `podman-isolated-pkgs`).
+Source builders are self-hosted Forgejo; this repo is the public binary mirror.
