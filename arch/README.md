@@ -6,7 +6,7 @@ Add **last** in `/etc/pacman.conf` (after [core]/[extra]):
 
 ```
 [xpufx]
-Server = https://xpufx.github.io/xpufx-pkgs/arch/$arch
+Server = https://github.com/xpufx/xpufx-pkgs/releases/download/arch-x86_64-current
 SigLevel = Optional TrustAll
 ```
 
