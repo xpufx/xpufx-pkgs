@@ -1,8 +1,8 @@
 # xpufx Package Repository
 
-Public mirror for pre-built binary packages from private builders.
+Public mirror for pre-built binary packages from self-hosted Forgejo builders.
 
-Hosts Arch (`pacman`), Debian (`apt`), and standalone releases. Built by private `aur-automation` builder, published here for public `pacman`/`apt` via GitHub Pages.
+Hosts Arch (`pacman`), Debian (`apt`), and standalone releases. Built by self-hosted Forgejo `aur-automation` builder, published here for public `pacman`/`apt` via GitHub Pages.
 
 ## Repositories
 
@@ -11,4 +11,4 @@ Hosts Arch (`pacman`), Debian (`apt`), and standalone releases. Built by private
 
 See https://xpufx.github.io/xpufx-pkgs/ for setup instructions.
 
-Source builders are private; this repo is the public binary mirror (like `podman-isolated` → `podman-isolated-pkgs`).
+Source builders are self-hosted Forgejo; this repo is the public binary mirror (like `podman-isolated` → `podman-isolated-pkgs`).
