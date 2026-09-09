@@ -68,7 +68,13 @@ sudo apk add paseo-cli-git
 <p>Repo only contains our packages — system <code>apk</code> still resolves from main.</p>
 
 <h2>Standalone</h2>
-<p>Portable builds that need no package manager — desktop <code>tar.gz</code> / <code>AppImage</code>, CLI prefix tarballs — ship as assets on the <a href="https://github.com/xpufx/xpufx-pkgs/releases/tag/arch-x86_64-current">rolling Arch release</a> alongside the pacman packages.</p>
+<p>Portable builds that need no package manager. Full list always at the <a href="https://github.com/xpufx/xpufx-pkgs/releases/tag/arch-x86_64-current">rolling release page</a>:</p>
+<table>
+<tr><th>What</th><th>Run it</th></tr>
+<tr><td>Desktop AppImage (any distro)</td><td><a href="https://github.com/xpufx/xpufx-pkgs/releases/download/arch-x86_64-current/Paseo-x86_64.AppImage"><code>Paseo-x86_64.AppImage</code></a> — <code>chmod +x</code> and run</td></tr>
+<tr><td>Desktop tarball</td><td><code>Paseo-&lt;version&gt;-x64.tar.gz</code> on the <a href="https://github.com/xpufx/xpufx-pkgs/releases/tag/arch-x86_64-current">release page</a> (name carries the version) — extract, run <code>Paseo/Paseo</code></td></tr>
+<tr><td>CLI prefix tarball</td><td><code>paseo-cli-git-standalone-&lt;version&gt;.tar.gz</code> on the <a href="https://github.com/xpufx/xpufx-pkgs/releases/tag/arch-x86_64-current">release page</a> — extract to <code>/</code> or <code>~/.local</code></td></tr>
+</table>
 <p>Source: <a href="https://github.com/xpufx/xpufx-pkgs">github.com/xpufx/xpufx-pkgs</a> — built by self-hosted Forgejo builder</p>
 </body>
 </html>
