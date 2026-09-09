@@ -5,7 +5,7 @@ Debian/Ubuntu `.deb` pool.
 Add repo + low-priority pin (so Debian main wins):
 
 ```
-echo "deb [trusted=yes] https://xpufx.github.io/xpufx-pkgs/apt stable main" | sudo tee /etc/apt/sources.list.d/xpufx.list
+echo "deb [trusted=yes] https://github.com/xpufx/xpufx-pkgs/releases/download/debian-current/ ./" | sudo tee /etc/apt/sources.list.d/xpufx.list
 cat <<'PIN' | sudo tee /etc/apt/preferences.d/99-xpufx
 Package: *
 Pin: origin xpufx.github.io

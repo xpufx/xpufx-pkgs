@@ -35,7 +35,7 @@ pacman -S xpufx/paseo-desktop-git xpufx/tone3000-plugin-bin</code></pre>
 
 <h2>Debian / Ubuntu</h2>
 <p>Repo has <code>Origin: xpufx</code>, low pin so Debian main wins unless explicit:</p>
-<pre><code>echo "deb [trusted=yes] https://xpufx.github.io/xpufx-pkgs/apt stable main" | sudo tee /etc/apt/sources.list.d/xpufx.list
+<pre><code>echo "deb [trusted=yes] https://github.com/xpufx/xpufx-pkgs/releases/download/debian-current/ ./" | sudo tee /etc/apt/sources.list.d/xpufx.list
 cat <<'PIN' | sudo tee /etc/apt/preferences.d/99-xpufx
 Package: *
 Pin: origin xpufx.github.io
